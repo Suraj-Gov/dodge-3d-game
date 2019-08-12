@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class scoreUpdater : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Text score;
+    public TextMeshProUGUI score;
     
 
     // Update is called once per frame
