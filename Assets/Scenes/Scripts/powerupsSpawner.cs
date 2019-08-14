@@ -8,7 +8,7 @@ public class powerupsSpawner : MonoBehaviour
     public float powerupsSpawnTimer;
     public float powerupsSpawnTimeInterval;
     public GameObject[] powerup;
-    public Vector3 endPoint4Pwrups;
+    public float speed;
 
     public void spawnPowerups()
     {
@@ -19,12 +19,12 @@ public class powerupsSpawner : MonoBehaviour
         {
             if (RandNum4Pos == i)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 2; j++)
                 {
                     if (RandNum4Power == j)
                     {
                         GameObject powerupInst = Instantiate(powerup[j], powerupsSpawnPoints[i].position, Quaternion.identity) as GameObject;
-                        
+                        powerupInst.GetComponent<Rigidbody>().velocity = Vector3.forward * -speed ;
                     }
                 }
             }

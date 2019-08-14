@@ -8,6 +8,9 @@ TagManager:
   - Obstacle
   - DisintCube
   - DisintegratedCubes
+  - powerupHealthPlus
+  - powerupInvin
+  - powerupSizePlus
   layers:
   - Default
   - TransparentFX

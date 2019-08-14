@@ -19,6 +19,8 @@ public class playerMovement : MonoBehaviour
     public GameObject ejectorPlace;
     public Renderer rend;
     public Material[] Mats;
+    
+    public bool invin = false;
 
     public void Start()
     {
@@ -29,6 +31,7 @@ public class playerMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
+        
         float xmovement = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * horspeed;
         float ymovement = Input.GetAxis("Vertical") * Time.fixedDeltaTime * vertspeed;
         Vector3 MovementVector = rb.position + Vector3.right * xmovement + Vector3.forward * ymovement;
@@ -70,6 +73,7 @@ public class playerMovement : MonoBehaviour
             rend.sharedMaterial = Mats[1];
         }
 
+        
 
     }
 
@@ -80,17 +84,36 @@ public class playerMovement : MonoBehaviour
             isGround = true;
         }
 
-        if(collisionInfo.collider.tag =="Obstacle" || transform.localScale.x < 0.3)
+
+        if(collisionInfo.collider.tag == "Obstacle" && invin == true)
+        {
+            collisionInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+
+
+        if (collisionInfo.collider.tag =="Obstacle" && invin == false)
         {
 
 
             Vector3 playerPos = player.transform.position;
             GameObject brokenPlayer = Instantiate(broken, playerPos, Quaternion.identity) as GameObject;
-            playerCollider.enabled = false;
-            playerMesh.enabled = false;
-    
-            FindObjectOfType<gameState>().endGame();    
+            brokenPlayer.GetComponent<BoxCollider>().enabled = true;
+            broken.transform.position = Vector3.up * 10000f + Vector3.forward * -10000f ;
+            //Debug.Log("1.1");
+
+
+            
+            {
+                playerCollider.enabled = false;
+                playerMesh.enabled = false;
+
+
+                FindObjectOfType<gameState>().endGame();
+            }
+            
         }
+
+        
  
     }
 
@@ -101,6 +124,17 @@ public class playerMovement : MonoBehaviour
         transform.localScale = transform.localScale * 0.95f;
     }
 
+    
+
+    public void enableInvin()
+    {
+        invin = true;
+    }
+
+    public void disableInvin()
+    {
+        invin = false;
+    }
 
 
     
