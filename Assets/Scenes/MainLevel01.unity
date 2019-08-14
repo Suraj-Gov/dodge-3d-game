@@ -1317,11 +1317,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8236376798228894899, guid: deed67ecb7f6c6b41a1ca0095c87830d,
-        type: 3}
-      propertyPath: redEffect
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 649236016963087990, guid: deed67ecb7f6c6b41a1ca0095c87830d,
         type: 3}
       propertyPath: m_Name
@@ -1382,6 +1377,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8236376798228894899, guid: deed67ecb7f6c6b41a1ca0095c87830d,
+        type: 3}
+      propertyPath: redEffect
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 649236016963087988, guid: deed67ecb7f6c6b41a1ca0095c87830d,
         type: 3}
       propertyPath: m_UseGravity
@@ -1391,6 +1391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 649236016963087988, guid: deed67ecb7f6c6b41a1ca0095c87830d,
+        type: 3}
+      propertyPath: m_Mass
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deed67ecb7f6c6b41a1ca0095c87830d, type: 3}

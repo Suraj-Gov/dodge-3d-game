@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic;   //needed for IEnumerator
 using UnityEngine;
-
+//further code development required for this to be eligible for commentation
 public class powerupInteraction : MonoBehaviour
 {
     
-    public Color sizeIncreaseColor;
+    public Color sizeIncreaseColor; 
     public Color blankWhite;
     public Color invinColor;
     public Color healthPlus;
@@ -39,7 +39,7 @@ public class powerupInteraction : MonoBehaviour
     {
         FindObjectOfType<playerMovement>().enableInvin();
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(3f);
         Debug.Log("end invin");
         FindObjectOfType<playerMovement>().disableInvin();
     }

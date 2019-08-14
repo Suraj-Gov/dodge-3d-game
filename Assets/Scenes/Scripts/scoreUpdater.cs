@@ -1,26 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using UnityEngine.UI;   //need to use this for UI
+using TMPro;    //need to use this for TMPro UI
 
 public class scoreUpdater : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public TextMeshProUGUI score;
-    
+    public TextMeshProUGUI score; //textUI for score
 
-    // Update is called once per frame
     void Update()
     {
         
         {
             score.text = Time.timeSinceLevelLoad.ToString("0");
+            //updates the score in realtime by considering time survived as score
         } 
     }
 
-    public void endMessage()
-    {
-        Debug.Log("end level");
-    }
-
-    
 }
