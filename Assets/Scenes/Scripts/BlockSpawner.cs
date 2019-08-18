@@ -38,8 +38,19 @@ public class BlockSpawner : MonoBehaviour
         {
             spawnNow();
             spawnTime = Time.timeSinceLevelLoad + timeBetweenSpawns;
-            // - Time.timeSinceLevelLoad * 0.01f;
-            //could add this to gradually increase difficulty, but it's too tough when score passes 50
+            if(timeBetweenSpawns > 0.7f)
+            {
+                timeBetweenSpawns -= 0.01f;
+            }
+            else if(timeBetweenSpawns > 0.5f)
+            {
+                timeBetweenSpawns -= 0.005f;
+            }
+            else if(timeBetweenSpawns > 0.4f)
+            {
+                timeBetweenSpawns -= 0.003f;
+            }
+            
 
         }
 

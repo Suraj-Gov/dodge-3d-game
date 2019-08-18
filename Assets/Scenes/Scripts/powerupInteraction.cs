@@ -6,10 +6,12 @@ public class powerupInteraction : MonoBehaviour
 {
     
     public Color sizeIncreaseColor; 
-    public Color blankWhite;
+    
     public Color invinColor;
     public Color healthPlus;
     public Color normalColor;
+    
+    public GameObject playerCube;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -37,10 +39,34 @@ public class powerupInteraction : MonoBehaviour
 
     IEnumerator Invin()
     {
+        
         FindObjectOfType<playerMovement>().enableInvin();
 
+        float elapsedTime = 0f;
+        float totalTime = 0.5f;
+
+        while(elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            playerCube.GetComponent<Renderer>().material.color = Color.Lerp(normalColor, invinColor, elapsedTime/totalTime*2);
+            yield return null;
+        }
+
+
+
         yield return new WaitForSeconds(3f);
-        Debug.Log("end invin");
+
+        elapsedTime = 0f;
+        totalTime = 0.5f;
+
+        while(elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            playerCube.GetComponent<Renderer>().material.color = Color.Lerp(invinColor, normalColor, elapsedTime/totalTime);
+            yield return null;
+        }
+
+        
         FindObjectOfType<playerMovement>().disableInvin();
     }
 

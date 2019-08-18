@@ -41,7 +41,7 @@ public class playerMovement : MonoBehaviour
             JumpEffect();   //calls the jump effect to emit the eject block from player's behind
         }
 
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 && Input.GetButton("Jump"))
         {
             rb.velocity = Vector3.up * Physics.gravity.y * (fallHigh - 1) * Time.fixedDeltaTime;
             //code for better jump
@@ -114,6 +114,7 @@ public class playerMovement : MonoBehaviour
             {
                 playerCollider.enabled = false;     //actually, you cannot destroy player.
                 playerMesh.enabled = false;     //but you can hide the player from existence
+                
                 //here the mesh and collider is disabled to mimic the absense of player.
                 FindObjectOfType<gameState>().endGame();    //calls the function to end the game
             }
