@@ -18,6 +18,7 @@ public class playerMovement : MonoBehaviour
     public GameObject ejectorPlace;         //the place from where the ejected block must exit
     public Renderer rend;                   //used to getcomp the renderer for the player material
     public Material[] Mats;                 //array of the colors which indicates the player state/size
+    public GameObject brokenObst;
     public bool invin = false;              //invincibility boolean which is defaulted to false
 
     public void Start()
@@ -60,7 +61,7 @@ public class playerMovement : MonoBehaviour
         Vector3 MovementVector = rb.position + Vector3.right * xmovement + Vector3.forward * ymovement;
         //this encapsulates the position with movement position into one vector
         MovementVector.x = Mathf.Clamp(MovementVector.x, -5.5f, 5.5f);      //clamps the Xax movement
-        MovementVector.z = Mathf.Clamp(MovementVector.z, 0.24f, 20.24f);    //clamps the Yax movement
+        MovementVector.z = Mathf.Clamp(MovementVector.z, 8.24f, 20.24f);    //clamps the Yax movement
         rb.position = MovementVector;   //equates that one movement vector to position of the player
 
         if (transform.localScale.x < 0.3f)
@@ -94,7 +95,9 @@ public class playerMovement : MonoBehaviour
 
         if(collisionInfo.collider.tag == "Obstacle" && invin == true)
         {
-            collisionInfo.gameObject.GetComponent<BoxCollider>().enabled = false;
+            GameObject broke = Instantiate(brokenObst, collisionInfo.collider.transform.position, collisionInfo.collider.transform.rotation);
+            Destroy(collisionInfo.collider.gameObject);
+            broke.GetComponent<Rigidbody>().AddForce(0, 500f, -5f, ForceMode.Impulse);
             //when the player is in invincible mode, when hit by a obstacle, obstacle's collider is disabled
         }
 
