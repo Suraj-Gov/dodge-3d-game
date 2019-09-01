@@ -3,7 +3,6 @@
 public class playerMovement : MonoBehaviour
 {
     public float horspeed = 10f;            //horizontal movement sensitivity
-    public float vertspeed = 12f;           //vertical movement sensitivity
     public Rigidbody rb;                    //rb is the rigidbody linked to the playerGameObject
     public bool isGround;                   //verifies if the player is grounded
     public GameObject broken;               //just the disintegrated player model
@@ -36,9 +35,8 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGround == true)    //jump script
         {
-            rb.velocity = Vector3.up * jumpForce;   //adds jumpForce to the Yax of player
-            isGround = false;   //sets isGround to false, because player is off ground when jumped
-            JumpEffect();   //calls the jump effect to emit the eject block from player's behind
+            JumpNow();
+            
         }
 
         if (rb.velocity.y < 0 && Input.GetButton("Jump"))
@@ -57,18 +55,13 @@ public class playerMovement : MonoBehaviour
     {
 
         float xmovement = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * horspeed; //InputValue * horzSensit
-        float ymovement = Input.GetAxis("Vertical") * Time.fixedDeltaTime * vertspeed;  //InputValue * vertSensit
-        Vector3 MovementVector = rb.position + Vector3.right * xmovement + Vector3.forward * ymovement;
+        Vector3 MovementVector = rb.position + Vector3.right * xmovement;
         //this encapsulates the position with movement position into one vector
         MovementVector.x = Mathf.Clamp(MovementVector.x, -5.5f, 5.5f);      //clamps the Xax movement
         MovementVector.z = Mathf.Clamp(MovementVector.z, 8.24f, 20.24f);    //clamps the Yax movement
         rb.position = MovementVector;   //equates that one movement vector to position of the player
 
-        if (transform.localScale.x < 0.3f)
-        {
-            FindObjectOfType<gameState>().endGame();
-            //if the size of the player becomes too small, game over.
-        }
+        
 
         if(transform.localScale.x < 0.4f)
         {
@@ -102,7 +95,7 @@ public class playerMovement : MonoBehaviour
         }
 
 
-        if (collisionInfo.collider.tag =="Obstacle" && invin == false)
+        if (collisionInfo.collider.tag =="Obstacle" && invin == false || transform.localScale.x < 0.3f)
             //when player hits the obstacle in normal vurnerable condition
         {
 
@@ -146,4 +139,13 @@ public class playerMovement : MonoBehaviour
         invin = false;  //this disables the invincible boolean to false, when called after set duration from coroutine
     }
 
+    public void JumpNow()
+    {
+        if (isGround == true)
+        {
+            rb.velocity = Vector3.up * jumpForce;   //adds jumpForce to the Yax of player
+            isGround = false;  //sets isGround to false, because player is off ground when jumped
+            JumpEffect();   //calls the jump effect to emit the eject block from player's behind
+        }
+    }
 }

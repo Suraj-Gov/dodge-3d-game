@@ -5,10 +5,10 @@ using UnityEngine;
 public class powerupInteraction : MonoBehaviour
 {
     
-    public Color sizeIncreaseColor; 
+     
     
     public Color invinColor;
-    public Color healthPlus;
+    
     public Color normalColor;
     
     public GameObject playerCube;
