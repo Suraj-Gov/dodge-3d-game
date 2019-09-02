@@ -42,7 +42,9 @@ public class powerupInteraction : MonoBehaviour
         
         FindObjectOfType<playerMovement>().enableInvin();
 
-        float elapsedTime = 0f;
+        playerCube.GetComponent<MeshRenderer>().material.color = invinColor;
+        
+        /*float elapsedTime = 0f;
         float totalTime = 0.5f;
 
         while(elapsedTime < totalTime)
@@ -50,13 +52,14 @@ public class powerupInteraction : MonoBehaviour
             elapsedTime += Time.deltaTime;
             playerCube.GetComponent<Renderer>().material.color = Color.Lerp(normalColor, invinColor, elapsedTime/totalTime*2);
             yield return null;
-        }
+        }*/
 
 
 
         yield return new WaitForSeconds(3f);
 
-        elapsedTime = 0f;
+        playerCube.GetComponent<MeshRenderer>().material.color = normalColor;
+        /*elapsedTime = 0f;
         totalTime = 0.5f;
 
         while(elapsedTime < totalTime)
@@ -64,7 +67,7 @@ public class powerupInteraction : MonoBehaviour
             elapsedTime += Time.deltaTime;
             playerCube.GetComponent<Renderer>().material.color = Color.Lerp(invinColor, normalColor, elapsedTime/totalTime);
             yield return null;
-        }
+        }*/
 
         
         FindObjectOfType<playerMovement>().disableInvin();

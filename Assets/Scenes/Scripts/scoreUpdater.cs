@@ -10,7 +10,7 @@ public class scoreUpdater : MonoBehaviour
     {
         
         {
-            score.text = Time.timeSinceLevelLoad.ToString("0");
+            score.text = Mathf.Round(Time.timeSinceLevelLoad).ToString();
             //updates the score in realtime by considering time survived as score
         } 
     }

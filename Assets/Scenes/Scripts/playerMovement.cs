@@ -17,8 +17,9 @@ public class playerMovement : MonoBehaviour
     public GameObject ejectorPlace;         //the place from where the ejected block must exit
     public Renderer rend;                   //used to getcomp the renderer for the player material
     public Material[] Mats;                 //array of the colors which indicates the player state/size
-    public GameObject brokenObst;
+    public GameObject brokenObst;           //brokenobstacle for invincible powerup effect
     public bool invin = false;              //invincibility boolean which is defaulted to false
+    
 
     public void Start()
     {
@@ -99,19 +100,21 @@ public class playerMovement : MonoBehaviour
             //when player hits the obstacle in normal vurnerable condition
         {
 
+            Debug.Log("collided");
+            playerCollider.enabled = false;     //actually, you cannot destroy player.
+            playerMesh.enabled = false;     //but you can hide the player from existence
+            //here the mesh and collider is disabled to mimic the absense of player.
             Vector3 playerPos = player.transform.position;  //player position is recorded in this vector
             GameObject brokenPlayer = Instantiate(broken, playerPos, Quaternion.identity) as GameObject;
             //broken.transform.position = Vector3.up * 10000f + Vector3.forward * -10000f;
             //add this line to make the disintegrated cubes more explosive-like
-                     
+            
             {
-                playerCollider.enabled = false;     //actually, you cannot destroy player.
-                playerMesh.enabled = false;     //but you can hide the player from existence
                 
-                //here the mesh and collider is disabled to mimic the absense of player.
                 FindObjectOfType<gameState>().endGame();    //calls the function to end the game
             }
-            
+
+
         }
 
         
