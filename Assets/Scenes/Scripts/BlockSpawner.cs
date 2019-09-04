@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class BlockSpawner : MonoBehaviour
 {
@@ -7,7 +8,12 @@ public class BlockSpawner : MonoBehaviour
     public float spawnTime = 2f;            //time to spawn when level is first loaded
     public float timeBetweenSpawns = 1f;        //time between each wave of spawn
     public float thrustSpeed = 5000f;           //speed at which the obstacles proceed towards the player
-    
+    public Slider slider;
+
+    public void Start()
+    {
+        timeBetweenSpawns = PlayerPrefs.GetFloat("spawnTimeInterval", 1.9f);
+    }
 
     public void spawnNow()
     {
@@ -22,7 +28,7 @@ public class BlockSpawner : MonoBehaviour
                 //cool
             {
                 GameObject obstInst = Instantiate(obstacle, spawnPoints[i].position, Quaternion.identity) as GameObject;             
-                obstInst.GetComponent<Rigidbody>().AddForce(0, 0, -thrustSpeed,ForceMode.VelocityChange);
+                obstInst.GetComponent<Rigidbody>().AddForce(0, 0, -thrustSpeed * Time.fixedDeltaTime);
                 //instantiates obstacle at the spawnPoint position,
                 //and then is forced a set force to move towards player
             }
@@ -40,16 +46,18 @@ public class BlockSpawner : MonoBehaviour
             spawnTime = Time.timeSinceLevelLoad + timeBetweenSpawns;
             if(timeBetweenSpawns > 0.7f)
             {
-                timeBetweenSpawns -= 0.01f;
+                timeBetweenSpawns -= 0.01f; 
             }
             else if(timeBetweenSpawns > 0.5f)
             {
-                timeBetweenSpawns -= 0.005f;
+                timeBetweenSpawns -= 0.005f; Debug.Log("hard mode active");
             }
             else if(timeBetweenSpawns > 0.4f)
             {
                 timeBetweenSpawns -= 0.003f;
             }
+
+            Debug.Log(timeBetweenSpawns);
             
 
         }
@@ -57,4 +65,6 @@ public class BlockSpawner : MonoBehaviour
     }
 
     
+
+
 }

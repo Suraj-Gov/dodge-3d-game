@@ -27,6 +27,7 @@ public class playerMovement : MonoBehaviour
         rend.enabled = true;
         rend.sharedMaterial = Mats[0];
         //initializes the material to start with bright red to indicate that player is optimal in size
+        
     }
 
 
@@ -151,4 +152,6 @@ public class playerMovement : MonoBehaviour
             JumpEffect();   //calls the jump effect to emit the eject block from player's behind
         }
     }
+
+    
 }

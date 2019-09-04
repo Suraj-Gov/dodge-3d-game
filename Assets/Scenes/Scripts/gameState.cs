@@ -37,20 +37,25 @@ public class gameState : MonoBehaviour
                                                                  //we use fixed deltatime, that is different from time.time, which we don't use, but it's run every time.
 
         yield return new WaitForSeconds(slowmoDuration / scaleSlowmo);
+
         endgameUI.SetActive(true);
 
-        
+        yield return new WaitForSeconds(0.2f);
+        Time.timeScale = 0f;
 
 
 
-        
-        
+
+
+
+
     }
 
     public void retryGame()
     {
         Time.timeScale = Time.timeScale * scaleSlowmo;
         Time.fixedDeltaTime = Time.fixedDeltaTime * scaleSlowmo;
+        Time.timeScale = 1f;
         //used to reset time, by dividing to remove the multiplier
         
 

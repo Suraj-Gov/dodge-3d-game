@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class playerMovementTouch : MonoBehaviour
 {
@@ -6,13 +7,21 @@ public class playerMovementTouch : MonoBehaviour
     public Rigidbody player_rb;
     private float screenWidth;
     public float speed;
+    
+
+    
+
 
     public void Start()
     {
         screenWidth = Screen.width;
+        speed = PlayerPrefs.GetFloat("moveSpeed", 270000f);
+        
+        
     }
     public void Update()
     {
+        
         int i = 0;
         while(i < Input.touchCount)
         {
@@ -38,4 +47,6 @@ public class playerMovementTouch : MonoBehaviour
     }
 
     
+
+
 }
