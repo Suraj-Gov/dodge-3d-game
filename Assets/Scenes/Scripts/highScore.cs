@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class highScore : MonoBehaviour
 {
-    public TextMeshProUGUI score;
-    public TextMeshProUGUI highScoreText;
+    public Text score;
+    public Text highScoreText;
 
     public void Start()
     {
-        highScoreText.text = "Highscore: " + PlayerPrefs.GetFloat("HighScorePref", 0);
+        highScoreText.text = PlayerPrefs.GetFloat("HighScorePref", 0).ToString("0");
     }
 
     public void FixedUpdate()

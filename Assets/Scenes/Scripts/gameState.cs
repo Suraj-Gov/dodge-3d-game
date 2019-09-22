@@ -8,6 +8,7 @@ public class gameState : MonoBehaviour
     public float scaleSlowmo = 10f;
     public float slowmoDuration = 10f;
     public GameObject endgameUI;
+    public GameObject pauseGameUI;
     
     
     
@@ -65,10 +66,28 @@ public class gameState : MonoBehaviour
 
     public void endApp()
     {
-        Time.timeScale = Time.timeScale * scaleSlowmo;
-        Time.fixedDeltaTime = Time.fixedDeltaTime * scaleSlowmo;
+        if (Time.timeScale != 1f)
+        {
+            //Time.timeScale = Time.timeScale * scaleSlowmo;
+            Time.fixedDeltaTime = Time.fixedDeltaTime * scaleSlowmo;
+            Time.timeScale = 1f;
+        }
 
         SceneManager.LoadScene(SceneManager.sceneCount - 1);
+    }
+
+    public void PauseGame()
+    {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1f;
+            pauseGameUI.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            pauseGameUI.SetActive(true);
+        }
     }
 
 

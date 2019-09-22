@@ -100,8 +100,6 @@ public class playerMovement : MonoBehaviour
         if (collisionInfo.collider.tag =="Obstacle" && invin == false || transform.localScale.x < 0.3f)
             //when player hits the obstacle in normal vurnerable condition
         {
-
-            Debug.Log("collided");
             playerCollider.enabled = false;     //actually, you cannot destroy player.
             playerMesh.enabled = false;     //but you can hide the player from existence
             //here the mesh and collider is disabled to mimic the absense of player.

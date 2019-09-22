@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;   //need to use this for UI
-using TMPro;    //need to use this for TMPro UI
 
 public class scoreUpdater : MonoBehaviour
 {
-    public TextMeshProUGUI score; //textUI for score
+    public Text score; //textUI for score
 
     void Update()
     {

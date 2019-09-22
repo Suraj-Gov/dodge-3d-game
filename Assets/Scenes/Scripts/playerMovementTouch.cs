@@ -6,16 +6,14 @@ public class playerMovementTouch : MonoBehaviour
     public GameObject player;
     public Rigidbody player_rb;
     private float screenWidth;
-    public float speed;
-    
+    private float speed;
 
-    
 
 
     public void Start()
     {
         screenWidth = Screen.width;
-        speed = PlayerPrefs.GetFloat("moveSpeed", 270000f);
+        speed = PlayerPrefs.GetFloat("moveSpeed", 210f);
         
         
     }
@@ -27,11 +25,11 @@ public class playerMovementTouch : MonoBehaviour
         {
             if(Input.GetTouch(0).position.x > screenWidth/1.5f)
             {
-                player_rb.AddForce(1f * speed * Time.deltaTime, 0f, 0f, ForceMode.Impulse);
+                player_rb.AddForce(speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
             }
             else if(Input.GetTouch(0).position.x < screenWidth/2.4f)
             {
-                player_rb.AddForce(-1f * speed * Time.deltaTime, 0f, 0f, ForceMode.Impulse);
+                player_rb.AddForce(-speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
             }
             ++i;
         }
@@ -45,6 +43,8 @@ public class playerMovementTouch : MonoBehaviour
         movement.x = Mathf.Clamp(movement.x, -5.41f, 5.41f);
         player_rb.position = movement;
     }
+
+    
 
     
 

@@ -12,7 +12,7 @@ public class BlockSpawner : MonoBehaviour
 
     public void Start()
     {
-        timeBetweenSpawns = PlayerPrefs.GetFloat("spawnTimeInterval", 1.9f);
+        timeBetweenSpawns = PlayerPrefs.GetFloat("spawnTimeIntervalValue", 1.9f);
     }
 
     public void spawnNow()
