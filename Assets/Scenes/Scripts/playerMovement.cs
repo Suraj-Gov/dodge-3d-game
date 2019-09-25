@@ -19,13 +19,14 @@ public class playerMovement : MonoBehaviour
     public Material[] Mats;                 //array of the colors which indicates the player state/size
     public GameObject brokenObst;           //brokenobstacle for invincible powerup effect
     public bool invin = false;              //invincibility boolean which is defaulted to false
-    
+    public TextMesh score;
 
     public void Start()
     {
         rend = GetComponent<Renderer>();
         rend.enabled = true;
         rend.sharedMaterial = Mats[0];
+        score.fontSize = 94;
         //initializes the material to start with bright red to indicate that player is optimal in size
         
     }
@@ -100,6 +101,7 @@ public class playerMovement : MonoBehaviour
         if (collisionInfo.collider.tag =="Obstacle" && invin == false || transform.localScale.x < 0.3f)
             //when player hits the obstacle in normal vurnerable condition
         {
+            score.fontSize = 1;
             playerCollider.enabled = false;     //actually, you cannot destroy player.
             playerMesh.enabled = false;     //but you can hide the player from existence
             //here the mesh and collider is disabled to mimic the absense of player.

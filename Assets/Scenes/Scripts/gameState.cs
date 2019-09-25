@@ -31,7 +31,6 @@ public class gameState : MonoBehaviour
     {
 
 
-
         Time.timeScale = 1f / scaleSlowmo;      //slows time by dividing the scale with slowmo value
                                                 //like 1/2, where 2 is the scale, time slows down to 0.5 from 1.0
         Time.fixedDeltaTime = Time.fixedDeltaTime / scaleSlowmo; //timescale is 1 by default
@@ -43,12 +42,6 @@ public class gameState : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         Time.timeScale = 0f;
-
-
-
-
-
-
 
     }
 

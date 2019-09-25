@@ -15,6 +15,6 @@ public class LevelManager : MonoBehaviour
 
     public void helpScreenGo()
     {
-        SceneManager.LoadScene("HelpScreen");
+        SceneManager.LoadScene(sceneBuildIndex: 2);
     }
 }

@@ -3,7 +3,12 @@ using UnityEngine.UI;   //need to use this for UI
 
 public class scoreUpdater : MonoBehaviour
 {
-    public Text score; //textUI for score
+    public TextMesh score; //textUI for score
+
+    private void Start()
+    {
+        score.fontSize = 94;
+    }
 
     void Update()
     {
@@ -13,5 +18,7 @@ public class scoreUpdater : MonoBehaviour
             //updates the score in realtime by considering time survived as score
         } 
     }
+
+    
 
 }

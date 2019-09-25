@@ -12,4 +12,9 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void GoHelpScreen()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 2);
+    }
 }
